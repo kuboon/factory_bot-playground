@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'active_record'
+gem 'activerecord', "~> 8"
 gem 'factory_bot'
 gem 'sqlite3'
