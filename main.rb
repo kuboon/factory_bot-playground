@@ -13,6 +13,12 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :groups
 end
 
+class Post < ActiveRecord::Base
+  belongs_to :user
+
+  enum :status, { draft: 0, published: 1 }
+end
+
 class Group < ActiveRecord::Base
   has_and_belongs_to_many :users
 end
@@ -33,6 +39,13 @@ ActiveRecord::Schema.define do
     t.belongs_to :user
     t.belongs_to :group
   end
+
+  create_table :posts do |t|
+    t.string :title
+    t.belongs_to :user
+    t.integer :status, default: 0
+    t.timestamps
+  end
 end
 
 # Write FactoryBot definitions for User and Group models
@@ -44,8 +57,11 @@ FactoryBot.define do
   factory :group do
     name { "Admins" }
   end
+
+  factory :post do
+    title { "Hello, World!" }
+  end
 end
 
 # Add FactoryBot.create for both User and Group factories
-user = FactoryBot.create(:user)
-group = FactoryBot.create(:group)
+p FactoryBot.create(:post, :published)
