@@ -1,3 +1,12 @@
+require 'bundler/inline'
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'activerecord', "~> 8"
+  gem 'factory_bot'
+  gem 'sqlite3'
+end
+
 require 'active_record'
 require 'factory_bot'
 require 'sqlite3'
